@@ -1,0 +1,13 @@
+.timer {
+}
+.field {
+}
+.value {
+}
+.label {
+}
+
+.none-pointer {
+  pointer-events: none;
+  user-select: none;
+}
