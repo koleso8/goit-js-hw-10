@@ -1,12 +1,18 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+// Описаний у документації
+import iziToast from 'izitoast';
+// Додатковий імпорт стилів
+import 'izitoast/dist/css/iziToast.min.css';
+
 const refs = {
   element: document.querySelector('#datetime-picker'),
   btn: document.querySelector('[data-start]'),
   value: document.querySelectorAll('.value'),
 };
+
 let userSelectedDate;
-refs.btn.classList.add('none-pointer');
+
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -14,7 +20,7 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     userSelectedDate = selectedDates[0];
-    refs.btn.classList.remove('none-pointer');
+    refs.btn.removeAttribute('disabled');
   },
 };
 flatpickr(refs.element, options);
@@ -22,20 +28,26 @@ let currentTime = new Date();
 
 refs.btn.addEventListener('click', e => {
   if (userSelectedDate <= currentTime) {
-    return window.alert('Please choose a date in the future');
+    return iziToast.show({
+      message: 'Please choose a date in the future',
+      backgroundColor: 'red',
+      messageColor: '#fff',
+      position: 'bottomLeft',
+      iconUrl: '../img/cancel-circle.svg',
+      close: false,
+    });
   }
   timer(userSelectedDate);
-  console.log('click');
-  refs.btn.classList.add('none-pointer');
-  refs.element.classList.add('none-pointer');
+  console.log();
+  refs.btn.disabled = true;
+  refs.element.disabled = true;
 });
 
-let IsActive = false;
 const timer = date => {
   setInterval(() => {
     const currentTime = new Date();
     const timeLeft = date - currentTime;
-    renderTime(convertMs(timeLeft));
+    renderTime(timeLeft);
   }, 1000);
 };
 
@@ -55,23 +67,20 @@ function convertMs(ms) {
   // Remaining seconds
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
-  return { days: days, hours: hours, minute: minutes, seconds: seconds };
+  return { days, hours, minutes, seconds };
 }
-
 function time2Str({ days, hours, minutes, seconds }) {
   days = days.toString().padStart(2, '0');
   hours = hours.toString().padStart(2, '0');
   minutes = minutes.toString().padStart(2, '0');
   seconds = seconds.toString().padStart(2, '0');
+  refs.value[0].textContent = days;
+  refs.value[1].textContent = hours;
+  refs.value[2].textContent = minutes;
+  refs.value[3].textContent = seconds;
 }
 
 function renderTime(ms) {
   const parsedTime = convertMs(ms);
-  const timeStr = time2Str(parsedTime);
-  console.log(timeStr);
-  refs.value[0].textContent = timeStr;
-  refs.value[1].textContent = timeStr;
-  refs.value[2].textContent = timeStr;
-  refs.value[3].textContent = timeStr;
-  //console.log(time2Str());
+  time2Str(parsedTime);
 }
