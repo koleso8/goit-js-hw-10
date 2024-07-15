@@ -28,12 +28,12 @@ let currentTime = new Date();
 
 refs.btn.addEventListener('click', e => {
   if (userSelectedDate <= currentTime) {
-    return iziToast.show({
+    return iziToast.error({
       message: 'Please choose a date in the future',
       backgroundColor: 'red',
       messageColor: '#fff',
       position: 'bottomLeft',
-      iconUrl: './img/cancel-circle.svg',
+      icon: 'icon-cancel-circle',
       close: false,
     });
   }

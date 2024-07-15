@@ -25,6 +25,10 @@
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 500;
 }
+.icon-cancel-circle:before {
+  content: '\e900';
+  color: #930303;
+}
 
 #datetime-picker {
   width: 180px;

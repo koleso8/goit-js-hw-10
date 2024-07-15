@@ -1,0 +1,22 @@
+.form {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 8px;
+}
+
+.delay {
+  width: 196px;
+  height: 30px;
+  border: 1px solid;
+  padding-left: 8px;
+}
+.field {
+  width: 200px;
+  padding: 16px 2px;
+  margin: 0;
+}
+button {
+  width: 206px;
+}
