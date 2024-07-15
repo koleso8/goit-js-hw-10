@@ -33,7 +33,7 @@ refs.btn.addEventListener('click', e => {
       backgroundColor: 'red',
       messageColor: '#fff',
       position: 'bottomLeft',
-      iconUrl: '../img/cancel-circle.svg',
+      iconUrl: './img/cancel-circle.svg',
       close: false,
     });
   }
