@@ -23,8 +23,6 @@ const options = {
     if (userSelectedDate <= currentTime) {
       return iziToast.error({
         message: 'Please choose a date in the future',
-        backgroundColor: 'red',
-        messageColor: '#fff',
         position: 'bottomLeft',
         close: false,
       });
