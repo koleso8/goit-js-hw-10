@@ -14,12 +14,6 @@ refs.formEl.addEventListener('submit', e => {
 
   const isSuccess = status === 'fulfilled';
 
-  // if (isSuccess) {
-  //   console.log(`✅ Fulfilled promise in ${delay}ms`);
-  // } else {
-  //   console.log(`❌ Rejected promise in ${delay}ms`);
-  // }
-
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       if (isSuccess) {

@@ -26,7 +26,6 @@ const options = {
         backgroundColor: 'red',
         messageColor: '#fff',
         position: 'bottomLeft',
-        icon: 'icon-cancel-circle',
         close: false,
       });
     }
