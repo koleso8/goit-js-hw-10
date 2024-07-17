@@ -3,6 +3,8 @@ import 'flatpickr/dist/flatpickr.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
+document.body.style.backgroundColor = '#fff';
+
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -67,7 +69,11 @@ function startCountdown() {
     const timeDifference = userSelectedDate - currentTime;
     datetimePicker.classList.add('active-clock');
 
-    if (timeDifference <= 0) {
+    if (timeDifference < 1000) {
+      document.body.style.backgroundColor = 'red';
+      setTimeout(() => {
+        document.body.style.backgroundColor = '#fff';
+      }, 1000);
       clearInterval(countdownInterval);
       updateTimerDisplay(0, 0, 0, 0);
       datetimePicker.disabled = false;
